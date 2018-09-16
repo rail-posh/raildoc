@@ -14,5 +14,4 @@ All available library are accessible via the link: https://github.com/rail-posh 
       
    tutgst
    cell
-   macro
    technology
