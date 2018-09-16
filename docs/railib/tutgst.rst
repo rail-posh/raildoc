@@ -1,11 +1,11 @@
-=================================
-Tutorial for RAIL Getting Started
-=================================
+=========================================
+Tutorial for RAIL Library Getting Started
+=========================================
 
 **Author**：Chixiao Chen
 
-This a simple tutorial on how to implement a RAIL flow to design an AMS module from scratch to a LVS/DRC clean GDS.
-To reveil the truth of RAIL, we illustrate the RAIL flow step by step, rather than providing a makefile based fully automatic flow.
+This is a simple tutorial on how to implement a RAIL flow to design an AMS module from scratch to a LVS/DRC clean GDS.
+To reveil the truth of RAIL, we illustrate the RAIL flow step by step, rather than provide a fully automatic makefile-based flow.
 
 To begin with, we need to download the following files from RAIL/rail65 repo, unzip if necessary, and put them onto your VLSI design server,
 
@@ -14,18 +14,18 @@ To begin with, we need to download the following files from RAIL/rail65 repo, un
 - digital/backe_end/FRAM_only/rail65.zip
 - analog/gds/rail65.gds (This file is not open for download due to NDA issues, plz contact rail4open@gmail.com to get them).
 
-To complete the sample, please confirm your enviroment already have installed Cadence IC6, Synopsys ICC and Mentor Calibre.
+To complete the sample, please confirm that your environment already has Cadence IC6, Synopsys ICC and Mentor Calibre installed.
 
 Step 1: Load a Verilog Netlist
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-In this example, we are going to design a CMOS transmission gate whose on-resistance is less than 200 Ohm at 0.6V operating point. We are going to use the RAIL cell, TGAT, and some digital gate from standard cell library.
-The RAIL compiler will generate a verilog based netlist as follow, 
+In this example, we are going to design a CMOS transmission gate whose on-resistance is less than 200 Ohm at 0.6V operating point. We are going to use the RAIL cell, TGAT, and some digital gates from standard cell library.
+The RAIL compiler will generate a verilog-based netlist as follow, 
 
 .. code-block:: Verilog
 
    // File: swbk01.v
    `timescale 1ns/1ps
-   module module SW_BANK_01 (
+   module SW_BANK_01 (
      input  SW,
      output POS, NEG 
      );
@@ -38,13 +38,13 @@ The RAIL compiler will generate a verilog based netlist as follow,
      TGAT   sw05 (.SW(SWB),.POS(POS),.NEG(NEG));
    endmodule
 
-The design paralles 6 TGAT cells, which are drived by BUFFD3 from standard cell. The top cell name is named as *SW_BANK_01*.
-The verilog file can be found under the RAIL repo, rail65/sample_getting_started .
+The design parallels 6 TGAT cells, which are driven by BUFFD3 from standard library. The top cell is named as *SW_BANK_01*.
+The verilog file can be found under the RAIL repo, rail65/sample_getting_started.
 
 Step 2: Generate an OA-based Schematic
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Modify the netlist with the power supply ports,
+Modify power supply ports of the netlist,
 
 .. code-block:: Verilog
 
@@ -64,32 +64,32 @@ Modify the netlist with the power supply ports,
      TGAT   sw05 (.SW(SWB),.POS(POS),.NEG(NEG), .VDD(VDD),.VSS(VSS));
    endmodule
 
-Before launching the virtuoso, make sure cds.lib has been configured correctly that rail65/tsmcN65/tcbn65lp/analogLib/basic can show up in the library manager.
+Before launching the virtuoso, make sure cds.lib has been configured correctly so that rail65/tsmcN65/tcbn65lp/analogLib/basic can show up in the library manager.
 
-Launch Virtuoso, create a libary named as *rail_design* or any name you want
+Launch Virtuoso, and create a libary named as *rail_design* or any name you want
 
-File --> Import --> Verilog, configure the VerilogIn as follow,
+File --> Import --> Verilog, configure the VerilogIn as follows,
 
-.. image:: ../image/verilogin1.png
+.. image:: ../../image/verilogin1.png
      :align: center
      :width: 400
      
 The target library is the library you created, the reference library should include basic/tcbn65lp(standard cell)/rail65. 
 And most importantly, add the verilog netlist.
-To avoid global pin mess, we recommand filling out some name different from your power/gound pin, as shown below
+To avoid global pin mess, we recommand filling out a name different from your power/gound pin, as shown below
 
-.. image:: ../image/verilogin2.png
+.. image:: ../../image/verilogin2.png
      :align: center
      :width: 400
      
-Click the OK or Apply. Virtuoso supports a structual verilog schematic generation. If verilog imports successfully, you will see a new schemtaic in the *rail_design* library, thought the wires are ugly.
+Click OK or Apply. Virtuoso supports a structual verilog schematic generation. If verilog imports successfully, you will see a new schematic in the *rail_design* library, though the wires are ugly.
 
-.. image:: ../image/verilogin3.png
+.. image:: ../../image/verilogin3.png
      :align: center
      
 The generated schematic can be used for pre-layout simulation and LVS. 
 
-Step 3: Generate an Milkyway-based Physcal Design
+Step 3: Generate a Milkyway-based Physcal Design
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Now we are ready to create the transmission gate layout by the digital flow. In the example, we are using IC Compiler from Synopsys. 
@@ -125,8 +125,8 @@ First, let us config all the path needed in the *0_def.tcl* file.
 
 
 
-Second, we create a the target design based the verilog list we obtained in step 1. 
-The key steps includes
+Second, we create the target design based the verilog list we obtained in step 1. 
+The key steps include
 
 
 .. code-block:: tcl
@@ -150,9 +150,9 @@ The key steps includes
   check_legality
 
 
-If the definition works all good, the results of *check_legality* should have no error, like the screen shot below
+If the definition works all good, the results of *check_legality* should have no error, like the screenshot below
 
-.. image:: ../image/checkleg.png
+.. image:: ../../image/checkleg.png
      :align: center
      
 The next step is placement and routing. In the case, we mark all the steps explicitly. 
@@ -172,14 +172,14 @@ but the digital nets are done automatically as,
    route_zrt_detail
    ...
    
-A screenshot is illustrated below for a success placement and routing.
+A screenshot is illustrated below for a successful placement and routing.
 
-.. image:: ../image/aprgst.png
+.. image:: ../../image/aprgst.png
      :align: center
 
-To complete the layout, we will do an LVS check in ICC. 
+To complete the layout, we will do LVS check in ICC. 
 There should be no erros in this sample.
-After that, the layout is going to be exported in the GDS format. 
+After that, the layout is going to be exported in GDS format. 
 The script looks like,
 
 
@@ -202,7 +202,7 @@ The script looks like,
 
 The screenshot of these steps is shown below.
  
-.. image:: ../image/verifylvs.png
+.. image:: ../../image/verifylvs.png
      :align: center
      
 All the script metioned in the step is avaialbe in the rail65 repo, under the directory of *sample_getting_started*.
@@ -219,13 +219,13 @@ If your rail65.gds are seperate from the OA database in Virtuoso, you can use *c
 But we highly recommend streaming-in the rail65.gds file to the *rail65* library in virtuoso first. After that, you do not need to do the gds merge. 
 The following figure shows the stream-in flow in the virtuoso. Note that the reference lib should include the standard cell lib (tcbn65lp) and the rail library (rail65).
 
-.. image:: ../image/streamin.png
+.. image:: ../../image/streamin.png
      :align: center
      :width: 400
      
 A successful layout import will result in a view as follow,
 
-.. image:: ../image/layout_gst.png
+.. image:: ../../image/layout_gst.png
      :align: center
      :width: 500
 
@@ -237,6 +237,6 @@ We provide a screenshot of the LVS check in calibre below.
 One of the coolest things in RAIL flow is that the layout it generated is **100%** DRC/LVS clean.
 There is **NO** worry for unnecessary LVS/DRC debugging in the flow.
 
-.. image:: ../image/calibrelvs.png
+.. image:: ../../image/calibrelvs.png
      :align: center
      :width: 600
