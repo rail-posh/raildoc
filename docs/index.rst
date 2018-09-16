@@ -30,6 +30,8 @@ Contents
    :maxdepth: 2
       
    railib/index
+   bench
    compiler
    ip
+   stack
 
