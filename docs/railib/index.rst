@@ -13,5 +13,6 @@ All available library are accessible via the link: https://github.com/rail-posh 
    :maxdepth: 1
       
    tutgst
-   analog
+   cell
+   macro
    technology
