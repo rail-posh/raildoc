@@ -5,20 +5,21 @@ Tutorial for RAIL Library Getting Started
 **Author**：Chixiao Chen
 
 This is a simple tutorial on how to implement a RAIL flow to design an AMS module from scratch to a LVS/DRC clean GDS.
-To reveil the truth of RAIL, we illustrate the RAIL flow step by step, rather than provide a fully automatic makefile-based flow.
+To elaborate the concept of RAIL, we illustrate the entire flow step by step, rather than provide a fully automatic makefile-based flow.
 
-To begin with, we need to download the following files from RAIL/rail65 repo, unzip if necessary, and put them onto your VLSI design server,
+Before getting started, we need to download and unzip the following files from RAIL/rail65 repo to your VLSI design server.
 
 - analog/cdk_oa/rail.zip cds.lib
 - digital/front_end/rail65.db
 - digital/backe_end/FRAM_only/rail65.zip
-- analog/gds/rail65.gds (This file is not open for download due to NDA issues, plz contact rail4open@gmail.com to get them).
+- analog/gds/rail65.gds (This file is not open for download due to confidentiality agreement, please contact rail4open@gmail.com).
 
-To complete the sample, please confirm that your environment already has Cadence IC6, Synopsys ICC and Mentor Calibre installed.
+This tutorial uses Cadence IC6, Synopsys ICC and Mentor Calibre to complete the example. 
+
 
 Step 1: Load a Verilog Netlist
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-In this example, we are going to design a CMOS transmission gate whose on-resistance is less than 200 Ohm at 0.6V operating point. We are going to use the RAIL cell, TGAT, and some digital gates from standard cell library.
+In this example, we are going to design a CMOS transmission gate whose turn-on resistance is less than 200 Ohm at 0.6V bias point. We are going to use the RAIL cell, TGAT, and some digital gates from standard cell library.
 The RAIL compiler will generate a verilog-based netlist as follow, 
 
 .. code-block:: Verilog
@@ -38,8 +39,8 @@ The RAIL compiler will generate a verilog-based netlist as follow,
      TGAT   sw05 (.SW(SWB),.POS(POS),.NEG(NEG));
    endmodule
 
-The design parallels 6 TGAT cells, which are driven by BUFFD3 from standard library. The top cell is named as *SW_BANK_01*.
-The verilog file can be found under the RAIL repo, rail65/sample_getting_started.
+The top cell named as *SW_BANK_01* is composed by 6 TGAT cells connected in parallel, which are driven by BUFFD3 from standard library. 
+This verilog file can be found under the RAIL repo, rail65/sample_getting_started.
 
 Step 2: Generate an OA-based Schematic
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
