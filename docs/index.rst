@@ -11,11 +11,13 @@ The project first releases a 65nm-based RAIL cell library and a tutorial to comp
 
 The motivation of the RAIL project is,
 
-- **to accelerate the analog/mixed-signal (AMS) designs**. Traditional analog/mixed-signal integrated circuit design exploits a fully custom flow. In other words, all works are done manually with huge time to markets.  RAIL ameliorates the methodology for design by introducing a verilog-like topology description language (TDL) and generates its behavior/schematic/layout automatically.
+- **to accelerate the analog/mixed-signal (AMS) designs**. Traditional analog/mixed-signal integrated circuit design exploits a fully custom flow. In other words, all manual works make it time-consuming, thereby increasing the design cycle time. RAIL ameliorates difficulties of the traditional analog design methodology by introducing a verilog-like topology description language (TDL) and generates its behavior/schematic/layout automatically.
 
-- **to enable process-portable design methodology**. Traditional AMS designs are highly process dependent, which makes it hard to transport across different technologies. This attribute seriously constraint the AMS to be an open source technology. Conventionally, even an IP is released, designers developing under other process still need to put similar efforts to reconstruct it. RAIL wants to change this status by the TDL and automatic flow. 
 
-- **to exploit new methodolgy for digitiezed AMS design**. In the past decades, one big difference on analog circuits is a digitalized trend. Today's PLL contains digital filters and DCOs, rather than the charge-pump and analog filters. ADC are more and more SAR-based, rather than pipelined based. The basic cells of analog blocks are no longer amplifier now, because of it unfriendly on advanced tecnologies. The RAIL project decides to develop a new methodology to embrace the trend.
+- **to enable process-portable design methodology**. Traditional AMS designs are highly process-dependent because of the performance requirements of analog blocks in a new process, making it one of the major bottlenecks for analog designers to migrate their design across different technologies. This attribute seriously constraint the AMS design to be an open source technology. Conventionally, even an IP is released, analog designers developing under other processes still need to put comparable efforts to redesign it. RAIL is used to alleviate the burden by the TDL and the automatic flow. 
+
+
+- **to exploit new methodolgy for digitized AMS design**. In the past decades, advances in integrated circuit technology make fabrication processes very suitable for digital designs. Reducing the amount of analog circuitry can improve the scalability of these mixed-signal integrated circuits. Today's PLL contains digital filters and DCOs, rather than the charge-pump and analog filters. The architecture of ADCs are more on SAR-based, rather than on pipelined based. The basic cells of analog blocks are no longer amplifier now, because of the challenges in traditional analog design flow on advanced technologies. The RAIL project decides to develop a new methodology to embrace the trend.
 
 
 
