@@ -4,8 +4,8 @@ Tutorial for RAIL Library Getting Started
 
 **Author**：Chixiao Chen
 
-This is a simple tutorial on how to implement a RAIL flow to design an AMS module from scratch to a LVS/DRC clean GDS.
-To elaborate the concept of RAIL, we illustrate the entire flow step by step, rather than provide a fully automatic makefile-based flow.
+This is a simple tutorial of how to implement a RAIL flow to design an AMS module from scratch to a LVS/DRC clean GDS.
+To elaborate the idea of RAIL, we illustrate the entire flow step by step, rather than providing a fully automatic makefile-based flow.
 
 Before getting started, we need to download and unzip the following files from RAIL/rail65 repo to your VLSI design server.
 
@@ -65,9 +65,11 @@ Modify power supply ports of the netlist,
      TGAT   sw05 (.SW(SWB),.POS(POS),.NEG(NEG), .VDD(VDD),.VSS(VSS));
    endmodule
 
-Before launching the virtuoso, make sure cds.lib has been configured correctly so that rail65/tsmcN65/tcbn65lp/analogLib/basic can show up in the library manager.
+Before launching the virtuoso, make sure cds.lib has been configured correctly so that rail65/tsmcN65/tcbn65lp/analogLib/basic can be found in your library manager.
 
-Launch Virtuoso, and create a libary named as *rail_design* or any name you want
+Launch Virtuoso, and create a libary named as *rail_design* or any name you like.
+
+Then we import the netlist to construct a schematic view for SW_BANK_01.
 
 File --> Import --> Verilog, configure the VerilogIn as follows,
 
@@ -75,15 +77,14 @@ File --> Import --> Verilog, configure the VerilogIn as follows,
      :align: center
      :width: 400
      
-The target library is the library you created, the reference library should include basic/tcbn65lp(standard cell)/rail65. 
-And most importantly, add the verilog netlist.
-To avoid global pin mess, we recommand filling out a name different from your power/gound pin, as shown below
+Then we add the verilog netlist to the library you created, and also include the reference library of basic/tcbn65lp(standard cell)/rail65. 
+To avoid conflict with global pin, we recommend using a name different from your power/gound pin, as shown below
 
 .. image:: ../../image/verilogin2.png
      :align: center
      :width: 400
      
-Click OK or Apply. Virtuoso supports a structual verilog schematic generation. If verilog imports successfully, you will see a new schematic in the *rail_design* library, though the wires are ugly.
+Click OK or Apply. Virtuoso supports a structual verilog schematic generation. If verilog imports successfully, you will see a new schematic in the *rail_design* library.
 
 .. image:: ../../image/verilogin3.png
      :align: center
@@ -211,7 +212,7 @@ All the script metioned in the step is avaialbe in the rail65 repo, under the di
 Step 4: Merge the GDS and Import to Virtuoso
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If your rail65.gds are seperate from the OA database in Virtuoso, you can use *calibredrv* to merge the gds
+If your rail65.gds is seperate from the OA database in Virtuoso, you can use *calibredrv* to merge the gds
 
 .. code-block:: none
 
