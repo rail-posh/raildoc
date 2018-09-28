@@ -2,17 +2,24 @@
 RAIL Stack
 ==========
 
-Clone repo to local:
+Step 1: Clone repo to local and prepare for the execution
 
 .. code-block:: tcl
 
 
   git clone railstack
   alias rail source <railstack>/rail.run
+  cd <railstack>
+  ln -s ./rail_src1/rail.run .
 
 
+Step 2: Checklist
 
-Run command:
+  cds.lib: include proper lib path to tsmcN65, analogLib, basic, rail65
+  
+  
+
+Step 3: Run command
 
 .. code-block:: tcl
 
@@ -37,4 +44,14 @@ This command will do the following:
   create .xil config file 
   
   run verilog_in to create schematic
+  
+
+The following files will be created:
+
+  dest_library: new library that includes new designed created by rail
+  
+  .xil config file: saved in ~/simulation/icc/option.xil
+  
+  
+  
   
