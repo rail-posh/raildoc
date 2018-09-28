@@ -2,11 +2,11 @@
 RAIL Stack
 ==========
 
-git clone railstack
+Clone repo to local:
 
 .. code-block:: tcl
+git clone railstack
 alias rail source <railstack>/rail.run
-
 
 Run command:
 
