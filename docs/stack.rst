@@ -25,7 +25,13 @@ Step 3: Run command
 
 
   rail -libname <dest_library> -v <verilog netlist>
+  
+where:
 
+  <dest_library> is the name of library where rail saves the new design and the library is named as "demo" by default.
+  
+  <verilog netlist> is the analog netlist of new design. The file path is set to ~/simulation/icc/netlist by default
+  
 
 For example:
 
@@ -39,18 +45,14 @@ For example:
 
 This command will do the following:
 
-  create new library to <dest_library>
+  create new library to demo.
   
-  create .xil config file 
+  create option.xil config file. The config file saved as ~/simulation/icc/option.xil
   
-  run verilog_in to create schematic
+  run verilog_in to create schematic for cell "tench"
+  
   
 
-The following files will be created:
-
-  dest_library: new library that includes new designed created by rail
-  
-  .xil config file: saved in ~/simulation/icc/option.xil
   
   
   
